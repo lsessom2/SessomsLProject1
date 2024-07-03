@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Adulting App</title>
+    <link rel="icon" href="/img/ADlogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/"><img src="/img/ADlogo.png" alt="Logo"></a>
+        </div>
+
+        <nav class="user-nav">
+            <% if (currentUser) { %>
+                <a href="/events/new">Create New Event</a>
+                <a href="/auth/profile">Profile (<%= currentUser.firstName %>)</a>
+                <a href="/auth/logout">Logout</a>
+            <% } else { %>
+                <a href="/auth/login">Log In</a>
+                <a href="/auth/signup">Sign Up</a>
+            <% } %>
+        </nav>
+    </header>
+    <header class="second-header">
+        <nav class="general-nav">
+            
+            <a href="/events">Events</a>
+        </nav>
+    </header>
+
+    <%if(errorMessages.length > 0) {
+        errorMessages.forEach(message=>{%>
+            <div class="error"> <%=message%></div>
+       <% });
+    }%>
+
+    <%if(successMessages.length > 0) {
+        successMessages.forEach(message=>{%>
+            <div class="success"> <%=message%></div>
+       <% });
+    }%>

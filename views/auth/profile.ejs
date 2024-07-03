@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<main class="content">
+<h1>Welcome back, <%= user.firstName %> <%= user.lastName %>! </h1>
+<hr>
+<h2>My Events</h2>
+<ul>
+    <% events.forEach(event => { %>
+        <li class="event">
+            <a href="/events/<%= event._id %>"><%= event.title %></a>
+            <form action="/events/<%= event._id %>?_method=DELETE" method="POST" class="rsvpA">
+                <button type="submit" class="delete-profile"><i class="fas fa-trash"></i></button>
+            </form>
+            <a href="/events/<%= event._id %>/edit" class="edit-profile"><i class="fas fa-edit"></i></a>
+        </li>
+    <% }) %>
+</ul>
+
+<h2>My RSVPs</h2>
+<ul>
+    <% rsvps.forEach(rsvp => { %>
+        <li class="event">
+            Event: <a href="/events/<%= rsvp.event._id %>"><%= rsvp.event.title %></a> - Status: <strong><%= rsvp.status %></strong>
+            <form action="/events/<%= rsvp.event._id %>/rsvp" method="POST" class="rsvpA">
+                <input type="hidden" name="status" value="YES">
+               
+            </form>
+            <form action="/events/<%= rsvp.event._id %>/rsvp" method="POST" class="rsvpA">
+                <input type="hidden" name="status" value="NO">
+                
+            </form>
+            <form action="/events/<%= rsvp.event._id %>/rsvp" method="POST" class="rsvpA">
+                <input type="hidden" name="status" value="MAYBE">
+               
+            </form>
+        </li>
+    <% }) %>
+</ul>
+</main>
+
+
+<%- include('../partials/footer') %>

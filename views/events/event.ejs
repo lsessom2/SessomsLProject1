@@ -1,0 +1,47 @@
+<%- include('../partials/header.ejs')%>
+
+    <div class="content">
+        <h1>
+            <%= event.category %>
+        </h1>
+        <h4>
+            <%= event.title %>
+                <hr>
+        </h4>
+        <section class="event-highlights">
+
+            <p><strong>Start:</strong>
+                <%= event.start %>
+            </p>
+            <p><strong>End:</strong>
+                <%= event.end %>
+            </p>
+            <p><strong>Location:</strong>
+                <%= event.location %>
+            </p>
+            <p><strong>Details:</strong>
+                <%= event.details %>
+            </p>
+            <img class="img-sz" src="<%= event.image %>" alt="<%= event.title %>">
+        </section>
+
+        <h2>RSVP</h2>
+        <% if (!currentUser) { %>
+            <p>Please <a href="/auth/login">log in</a> to RSVP.</p>
+            <h4>Total RSVPs (Yes): <%= event.yesCount %></h4>
+        <% } else if (!event.hostName) { %>
+            <p>Error: Event host not found.</p>
+        <% } else if (currentUser._id.toString() === event.hostName.toString()) { %>
+            <p>You cannot RSVP for your own event.</p>
+        <% } else { %>
+            <form action="/events/<%= event._id %>/rsvp" method="POST">
+                <button type="submit" name="status" value="YES" class="btn-yes">Yes</button>
+                <button type="submit" name="status" value="NO" class="btn-no">No</button>
+                <button type="submit" name="status" value="MAYBE" class="btn-maybe">Maybe</button>
+            </form>
+        <% } %>
+
+    </div>
+
+
+    <%- include('../partials/footer.ejs')%>

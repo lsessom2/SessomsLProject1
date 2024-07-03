@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs') %>
+
+<main>
+    <h1>Create New Event</h1>
+    <form action="/events" enctype="multipart/form-data" method="POST" class="event-form">
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="#">---------</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Networking">Networking</option>
+            <option value="Seminar">Seminar</option>
+            <option value="Webinar">Webinar</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="title">Event Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="start">Start Date/Time:</label>
+        <input type="datetime-local" id="start" name="start" required>
+
+        <label for="end">End Date/Time:</label>
+        <input type="datetime-local" id="end" name="end" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="details">Details:</label>
+        <textarea id="details" name="details" rows="4" required minlength="10"></textarea>
+
+        <label for="image">Event Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+
+        <button type="submit">Create Event</button>
+    </form>
+</main>
+
+<%- include('../partials/footer.ejs') %>

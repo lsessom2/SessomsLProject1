@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs')%>
+
+        <div class="content">
+            <% categories.forEach(category => { %>
+                <h2><%= category %></h2>
+                <% let categoryEvents = events.filter(event => event.category === category); %>
+                <% if (categoryEvents.length > 0) { %>
+                    <ul class="event">
+                        <% categoryEvents.forEach(event => { %>
+                            <li><a href="/events/<%= event._id %>"><%= event.title %></a></li>
+                        <% }); %>
+                        
+                    </ul>
+                <% } else { %>
+                    <p>No events in this category.</p>
+                <% } %>
+            <% }); %>
+
+        </div>
+
+        
+
+
+<%- include('../partials/footer.ejs')%>
+
+
